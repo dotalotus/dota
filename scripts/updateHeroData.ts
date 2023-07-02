@@ -11,5 +11,8 @@ export async function updateHeroData() {
   await Deno.writeTextFile(
     path,
     `export const Heroes = ${JSON.stringify(heroData)} as const;`,
+    {
+      create: true,
+    },
   );
 }
