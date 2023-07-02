@@ -1,15 +1,19 @@
-import { setBearerToken } from "../api/stratz/auth.ts";
-import { color } from "../deps.ts";
+import { CaptureErr, color, isErr } from "../deps.ts";
 import { api } from "../mod.ts";
 
 import { fmtData } from "./fmtData.ts";
 import { updateHeroData } from "./updateHeroData.ts";
 
-export const updateScripts = [
+export const dataUpdateScripts = [
   updateHeroData,
 ];
 
-export async function runUpdateScripts() {
+export async function runDataUpdateScripts() {
+  const dir = CaptureErr(
+    "Data dir doesn't exist",
+    () => Deno.readDirSync("./data"),
+  );
+  if (isErr(dir)) await Deno.mkdir("./data");
   const key = Deno.env.get("STRATZ_BEARER_TOKEN");
   if (key === undefined) {
     throw new Error(
@@ -20,7 +24,7 @@ export async function runUpdateScripts() {
   console.info(
     `${color.gray("[     ms ]")} ${color.blue("Running Update Scripts...")}`,
   );
-  for (const updateScript of updateScripts) {
+  for (const updateScript of dataUpdateScripts) {
     const now = String(performance.now());
     console.info(
       `${color.gray(`[ ${now.slice(0, now.indexOf(".") + 2).padStart(6)} ]`)} ${

@@ -1,9 +1,9 @@
 import { color } from "../deps.ts";
-import { runUpdateScripts } from "./mod.ts";
+import { runDataUpdateScripts } from "./mod.ts";
 
 switch (Deno.args[0]) {
   case "update":
-    runUpdateScripts();
+    runDataUpdateScripts();
     break;
   default:
     console.error(color.red("Unknown command: "), Deno.args[0]);
