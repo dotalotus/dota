@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set up Environmental Variables
+        run: |
+          echo "STRATZ_BEARER_TOKEN=${{ secrets.STRATZ_BEARER_TOKEN }}" >> $GITHUB_ENV
       - name: Checkout repository
         uses: actions/checkout@v2
 
