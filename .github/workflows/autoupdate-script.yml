@@ -3,6 +3,7 @@ name: Run Deno Task and Commit Changes
 on:
   schedule:
     - cron: '0 1 * * *'
+  workflow_dispatch:
 
 jobs:
   run-deno-task:
