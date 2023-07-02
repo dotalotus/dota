@@ -1,0 +1,53 @@
+name: Run Deno Task and Commit Changes
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+
+jobs:
+  run-deno-task:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Deno
+        uses: denolib/setup-deno@v2
+
+      - name: Run Deno task
+        run: deno task update
+
+      - name: Configure Git
+        run: |
+          git config user.name "muelltyl"
+          git config user.email "muelltyl@gmail.com"
+
+      - name: Get latest tag
+        id: get_latest_tag
+        run: |
+          latest_tag=$(git describe --abbrev=0 --tags)
+          echo "::set-output name=latest_tag::$latest_tag"
+
+      - name: Increment patch version
+        id: increment_version
+        run: |
+          current_tag=$latest_tag
+          IFS='.' read -ra parts <<< "$current_tag"
+          major="${parts[0]}"
+          minor="${parts[1]}"
+          patch="${parts[2]}"
+          new_patch=$((patch+1))
+          new_tag="$major.$minor.$new_patch"
+          echo "::set-output name=new_tag::$new_tag"
+
+      - name: Commit and push changes
+        run: |
+          git add .
+          git commit -m "Automatic commit by Deno task update"
+          git push
+
+      - name: Create new tag
+        run: |
+          git tag -a ${{ steps.increment_version.outputs.new_tag }} -m "Version ${{ steps.increment_version.outputs.new_tag }}"
+          git push origin ${{ steps.increment_version.outputs.new_tag }}
