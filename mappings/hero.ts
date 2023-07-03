@@ -1,13 +1,13 @@
 import { Hero, Heroes } from "../mod.ts";
 
 export const HeroByID = new Map<number, Hero>(
-  Heroes.map((hero) => [hero.id, hero]),
+  Heroes.map((hero) => [hero.id, hero as unknown as Hero]),
 );
 export const HeroByName = new Map<string, Hero>(
-  Heroes.map((hero) => [hero.name, hero]),
+  Heroes.map((hero) => [hero.name, hero as unknown as Hero]),
 );
 export const HeroByShortName = new Map<string, Hero>(
-  Heroes.map((hero) => [hero.shortName, hero]),
+  Heroes.map((hero) => [hero.shortName, hero as unknown as Hero]),
 );
 export function GetHero(selector: string | number) {
   if (!isNaN(+selector)) {

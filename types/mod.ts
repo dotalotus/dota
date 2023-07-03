@@ -1,1 +1,4 @@
 export * from "./hero.ts";
+export * from "./ability.ts";
+export * from "./gameVersion.ts";
+export * from "./item.ts";

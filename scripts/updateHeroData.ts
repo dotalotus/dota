@@ -1,4 +1,4 @@
-import { fetchHeroData } from "../api/stratz/heroData.ts";
+import { fetchHeroData } from "../api/stratz/mod.ts";
 import { isErr } from "../deps.ts";
 
 const path = "./data/heroes.ts";

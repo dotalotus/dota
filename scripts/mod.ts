@@ -2,10 +2,16 @@ import { CaptureErr, color, isErr } from "../deps.ts";
 import { api } from "../mod.ts";
 
 import { fmtData } from "./fmtData.ts";
+import { updateAbilityData } from "./updateAbilityData.ts";
+import { updateGameVersionData } from "./updateGameVersionData.ts";
 import { updateHeroData } from "./updateHeroData.ts";
+import { updateItemData } from "./updateItemData.ts";
 
 export const dataUpdateScripts = [
   updateHeroData,
+  updateAbilityData,
+  updateGameVersionData,
+  updateItemData,
 ];
 
 export async function runDataUpdateScripts() {
