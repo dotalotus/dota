@@ -7,6 +7,7 @@ import { updateGameVersionData } from "./updateGameVersionData.ts";
 import { updateGamemodeData } from "./updateGamemodeData.ts";
 import { updateHeroData } from "./updateHeroData.ts";
 import { updateItemData } from "./updateItemData.ts";
+import { updateLanguageData } from "./updateLanguageData.ts";
 
 export const dataUpdateScripts = [
   updateHeroData,
@@ -14,6 +15,7 @@ export const dataUpdateScripts = [
   updateGameVersionData,
   updateItemData,
   updateGamemodeData,
+  updateLanguageData,
 ];
 
 export async function runDataUpdateScripts() {
