@@ -5,3 +5,4 @@ export * from "./items.ts";
 export * from "./gamemodes.ts";
 export * from "./languages.ts";
 export * from "./lobbyType.ts";
+export * from "./npcs.ts";

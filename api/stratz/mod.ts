@@ -6,3 +6,4 @@ export * from "./itemData.ts";
 export * from "./gamemodeData.ts";
 export * from "./languageData.ts";
 export * from "./lobbyTypeData.ts";
+export * from "./npcData.ts";
