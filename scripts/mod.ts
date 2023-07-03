@@ -4,6 +4,7 @@ import { api } from "../mod.ts";
 import { fmtData } from "./fmtData.ts";
 import { updateAbilityData } from "./updateAbilityData.ts";
 import { updateGameVersionData } from "./updateGameVersionData.ts";
+import { updateGamemodeData } from "./updateGamemodeData.ts";
 import { updateHeroData } from "./updateHeroData.ts";
 import { updateItemData } from "./updateItemData.ts";
 
@@ -12,6 +13,7 @@ export const dataUpdateScripts = [
   updateAbilityData,
   updateGameVersionData,
   updateItemData,
+  updateGamemodeData,
 ];
 
 export async function runDataUpdateScripts() {
@@ -37,6 +39,7 @@ export async function runDataUpdateScripts() {
         color.white("Running script")
       } ${color.yellow(updateScript.name)}`,
     );
+    // deno-lint-ignore no-await-in-loop
     await updateScript();
   }
   await fmtData();
