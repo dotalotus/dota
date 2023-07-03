@@ -35,7 +35,7 @@ jobs:
           git config --global user.name "Your Name"
           echo "${{ secrets.AUTOUPDATER_PAT }}" > token.txt
           git config --global credential.helper 'store --file token.txt'
-          git remote set-url origin https://github.com/OWNER/REPO.git
+          git remote set-url origin https://github.com/dotalotus/dota.git
 
       - name: Get latest tag
         id: get_latest_tag
