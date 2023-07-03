@@ -34,9 +34,9 @@ jobs:
       - name: Get latest tag
         id: get_latest_tag
         run: |
-          latest_tag=$(git describe --abbrev=0 --tags)
+          latest_tag=$(git describe --abbrev=0 --tags --always)
           echo "::set-output name=latest_tag::$latest_tag"
-
+          
       - name: Increment patch version
         id: increment_version
         run: |
