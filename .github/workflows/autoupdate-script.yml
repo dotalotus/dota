@@ -32,6 +32,13 @@ jobs:
       - name: Run Deno task
         run: deno task update
 
+      - name: Check for changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit. Skipping..."
+            exit 0
+          fi
+
       - name: Configure Git with Deploy Key
         run: |
           mkdir -p ~/.ssh
@@ -57,7 +64,7 @@ jobs:
           patch="${parts[2]}"
           new_patch=$((patch+1))
           new_tag="$major.$minor.$new_patch"
-          echo "::set-output name=new_tag::$new_tag"
+          echo "NEW_TAG=$new_tag" >> $GITHUB_ENV
 
       - name: Commit and push changes
         run: |
@@ -70,5 +77,5 @@ jobs:
 
       - name: Create new tag
         run: |
-          git tag -a ${{ steps.increment_version.outputs.new_tag }} -m "Version ${{ steps.increment_version.outputs.new_tag }}"
-          git push origin ${{ steps.increment_version.outputs.new_tag }}
+          git tag -a ${{ env.NEW_TAG }} -m "Version ${{ env.NEW_TAG }}"
+          git push origin ${{ env.NEW_TAG }}
