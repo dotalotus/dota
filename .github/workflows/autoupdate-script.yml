@@ -70,6 +70,7 @@ jobs:
         run: |
           git add .
           git commit -m "Automatic commit by Deno task update"
+          git push
 
         env:
           DEPLOY_KEY_PRIVATE: ${{ secrets.DEPLOY_KEY_PRIVATE }}
@@ -78,4 +79,4 @@ jobs:
         run: |
           echo ${{ env.NEW_TAG }}
           git tag -a ${{ env.NEW_TAG }} -m "Version ${{ env.NEW_TAG }}"
-          git push
+          git push origin ${{ env.NEW_TAG }}
