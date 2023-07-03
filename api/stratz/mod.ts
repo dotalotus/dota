@@ -5,3 +5,4 @@ export * from "./gameVersionData.ts";
 export * from "./itemData.ts";
 export * from "./gamemodeData.ts";
 export * from "./languageData.ts";
+export * from "./lobbyTypeData.ts";
