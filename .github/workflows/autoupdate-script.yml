@@ -59,7 +59,7 @@ jobs:
         run: |
           git add .
           git commit -m "Automatic commit by Deno task update"
-          git push --token $PAT
+          git push
 
       - name: Create new tag
         run: |
