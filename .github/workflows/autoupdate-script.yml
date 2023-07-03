@@ -57,13 +57,12 @@ jobs:
       - name: Increment patch version
         id: increment_version
         run: |
-          echo NEW_TAG=$(echo $latest_tag | awk -F. -v OFS=. 'NF==1{print ++$NF}; NF>1{if(length($NF+1)>length($NF))$(NF-1)++; $NF=sprintf("%0*d", length($NF), ($NF+1)%(10^length($NF))); print}') >> $GITHUB_ENV
+          echo "NEW_TAG=$(echo $latest_tag | awk -F. -v OFS=. 'NF==1{print ++$NF}; NF>1{if(length($NF+1)>length($NF))$(NF-1)++; $NF=sprintf("%0*d", length($NF), ($NF+1)%(10^length($NF))); print}')" >> $GITHUB_ENV
 
       - name: Commit and push changes
         run: |
           git add .
           git commit -m "Automatic commit by Deno task update"
-          git push
 
         env:
           DEPLOY_KEY_PRIVATE: ${{ secrets.DEPLOY_KEY_PRIVATE }}
