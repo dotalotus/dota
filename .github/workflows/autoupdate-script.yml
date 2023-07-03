@@ -36,9 +36,11 @@ jobs:
 
       - name: Check for changes
         run: |
-          if git diff --quiet; then
-            echo "No changes to commit. Skipping..."
-            exit 0
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "No changes to commit. Exiting..."
+            echo "CHANGES=false" >> $GITHUB_ENV
+          else
+            echo "CHANGES=true" >> $GITHUB_ENV
           fi
 
       - name: Configure Git with Deploy Key
@@ -51,6 +53,7 @@ jobs:
           git config --global user.name "Tyler Mueller"
 
       - name: Get latest tag
+        if: env.CHANGES == 'true'
         id: get_latest_tag
         run: |
           TAG=$(git describe --abbrev=0 --tags --always)
@@ -59,6 +62,7 @@ jobs:
 
 
       - name: Increment patch version
+        if: env.CHANGES == 'true'
         id: increment_version
         run: |
           TAG=${{ env.TAG }}
@@ -67,6 +71,7 @@ jobs:
           echo "NEW_TAG=${NEW_TAG}" >> $GITHUB_ENV
 
       - name: Commit and push changes
+        if: env.CHANGES == 'true'
         run: |
           git add .
           git commit -m "Automatic commit by Deno task update"
@@ -76,6 +81,7 @@ jobs:
           DEPLOY_KEY_PRIVATE: ${{ secrets.DEPLOY_KEY_PRIVATE }}
 
       - name: Create new tag
+        if: env.CHANGES == 'true'
         run: |
           echo ${{ env.NEW_TAG }}
           git tag -a ${{ env.NEW_TAG }} -m "Version ${{ env.NEW_TAG }}"
