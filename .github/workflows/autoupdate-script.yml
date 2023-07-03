@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Lists current directory
+        run: ls
+      - name: Full Working Directory
+        run: pwd
       - name: Set up Environmental Variables
         run: |
           echo "STRATZ_BEARER_TOKEN=${{ secrets.STRATZ_BEARER_TOKEN }}" >> $GITHUB_ENV
