@@ -29,8 +29,12 @@ jobs:
       - name: Run Deno task
         run: deno task update
 
-      - name: Configure Git with PAT
+      - name: Configure Git with Deploy Key
         run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY_PRIVATE }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.email "muelltyl@gmail.com"
           git config --global user.name "Tyler Mueller"
 
@@ -53,12 +57,13 @@ jobs:
           echo "::set-output name=new_tag::$new_tag"
 
       - name: Commit and push changes
-        env:
-          PAT_TOKEN: ${{ secrets.AUTOUPDATER_PAT }}
         run: |
           git add .
           git commit -m "Automatic commit by Deno task update"
           git push
+
+        env:
+          DEPLOY_KEY_PRIVATE: ${{ secrets.DEPLOY_KEY_PRIVATE }}
 
       - name: Create new tag
         run: |
