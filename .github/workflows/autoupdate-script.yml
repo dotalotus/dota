@@ -57,14 +57,7 @@ jobs:
       - name: Increment patch version
         id: increment_version
         run: |
-          current_tag=$latest_tag
-          IFS='.' read -ra parts <<< "$current_tag"
-          major="${parts[0]}"
-          minor="${parts[1]}"
-          patch="${parts[2]}"
-          new_patch=$((patch+1))
-          new_tag="$major.$minor.$new_patch"
-          echo "NEW_TAG=$new_tag" >> $GITHUB_ENV
+          echo NEW_TAG=$(echo $latest_tag | awk -F. -v OFS=. 'NF==1{print ++$NF}; NF>1{if(length($NF+1)>length($NF))$(NF-1)++; $NF=sprintf("%0*d", length($NF), ($NF+1)%(10^length($NF))); print}') >> $GITHUB_ENV
 
       - name: Commit and push changes
         run: |
