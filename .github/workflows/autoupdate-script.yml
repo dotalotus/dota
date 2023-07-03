@@ -12,11 +12,14 @@ jobs:
     steps:
       - name: Lists current directory
         run: ls
+
       - name: Full Working Directory
         run: pwd
+
       - name: Set up Environmental Variables
         run: |
           echo "STRATZ_BEARER_TOKEN=${{ secrets.STRATZ_BEARER_TOKEN }}" >> $GITHUB_ENV
+
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -26,17 +29,20 @@ jobs:
       - name: Run Deno task
         run: deno task update
 
-      - name: Configure Git
+      - name: Configure Git with PAT
         run: |
-          git config user.name "muelltyl"
-          git config user.email "muelltyl@gmail.com"
+          git config --global user.email "your-email@example.com"
+          git config --global user.name "Your Name"
+          echo "${{ secrets.AUTOUPDATER_PAT }}" > token.txt
+          git config --global credential.helper 'store --file token.txt'
+          git remote set-url origin https://github.com/OWNER/REPO.git
 
       - name: Get latest tag
         id: get_latest_tag
         run: |
           latest_tag=$(git describe --abbrev=0 --tags --always)
           echo "::set-output name=latest_tag::$latest_tag"
-          
+
       - name: Increment patch version
         id: increment_version
         run: |
@@ -53,7 +59,7 @@ jobs:
         run: |
           git add .
           git commit -m "Automatic commit by Deno task update"
-          git push
+          git push --token $PAT
 
       - name: Create new tag
         run: |
