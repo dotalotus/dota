@@ -9,6 +9,12 @@ export const HeroByName = new Map<string, Hero>(
 export const HeroByShortName = new Map<string, Hero>(
   Heroes.map((hero) => [hero.shortName, hero as unknown as Hero]),
 );
+export const HeroByAlias = new Map<string, Hero>(
+  Heroes.flatMap((hero) =>
+    hero.aliases.map((alias) => [alias, hero as unknown as Hero])
+  ),
+);
+
 export function GetHero(selector: string | number) {
   if (!isNaN(+selector)) {
     const id = +selector;
@@ -18,6 +24,7 @@ export function GetHero(selector: string | number) {
   if (typeof selector === "string") {
     if (HeroByName.has(selector)) return HeroByName.get(selector);
     if (HeroByShortName.has(selector)) return HeroByShortName.get(selector);
+    if (HeroByAlias.has(selector)) return HeroByAlias.get(selector);
   }
   return null;
 }
