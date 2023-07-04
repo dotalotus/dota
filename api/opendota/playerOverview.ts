@@ -32,7 +32,9 @@ export interface PlayerOverview {
 export async function fetchPlayerOverview(steamid: SteamID) {
   const id = normalizeSteamID(String(steamid));
   if (isErr(id)) return id;
-  const res = await OpendotaRequester.json("api/players/" + id.id32);
+  const res = await OpendotaRequester.json<PlayerOverview>(
+    "api/players/" + id.id32,
+  );
   if (isErr(res)) return res;
-  return res as unknown as PlayerOverview;
+  return res;
 }

@@ -83,7 +83,7 @@ export async function fetchPlayerMatches(
     }
     options.excluded_account_id = excluded_id.id32;
   }
-  const res = await OpendotaRequester.json(
+  const res = await OpendotaRequester.json<PlayerRecentMatch[]>(
     "api/players/" + id.id32 + "/matches",
     {
       searchParams: new URLSearchParams(
@@ -94,5 +94,5 @@ export async function fetchPlayerMatches(
   if (isErr(res)) {
     return res;
   }
-  return res as unknown as PlayerRecentMatch[];
+  return res;
 }

@@ -1,6 +1,5 @@
-// deno-lint-ignore-file camelcase
 import { isErr, normalizeSteamID } from "../../deps.ts";
-import { GamemodeID, GameVersionID, HeroID, SteamID } from "../../mod.ts";
+import { SteamID } from "../../mod.ts";
 import { PlayerRecentMatch } from "./mod.ts";
 import { OpendotaRequester } from "./requester.ts";
 
@@ -11,11 +10,11 @@ export async function fetchPlayerRecentMatches(
   if (isErr(id)) {
     return id;
   }
-  const res = await OpendotaRequester.json(
+  const res = await OpendotaRequester.json<PlayerRecentMatch[]>(
     "api/players/" + id.id32 + "/recentMatches",
   );
   if (isErr(res)) {
     return res;
   }
-  return res as unknown as PlayerRecentMatch[];
+  return res;
 }
