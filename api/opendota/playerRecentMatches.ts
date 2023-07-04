@@ -10,11 +10,7 @@ export async function fetchPlayerRecentMatches(
   if (isErr(id)) {
     return id;
   }
-  const res = await OpendotaRequester.json<PlayerRecentMatch[]>(
+  return await OpendotaRequester.json<PlayerRecentMatch[]>(
     "api/players/" + id.id32 + "/recentMatches",
   );
-  if (isErr(res)) {
-    return res;
-  }
-  return res;
 }
