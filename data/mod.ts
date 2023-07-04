@@ -6,3 +6,4 @@ export * from "./gamemodes.ts";
 export * from "./languages.ts";
 export * from "./lobbyType.ts";
 export * from "./npcs.ts";
+export * from "./regions.ts";
