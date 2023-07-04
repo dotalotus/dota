@@ -1,5 +1,6 @@
 // deno-lint-ignore-file camelcase
 import { isErr, normalizeSteamID } from "../../deps.ts";
+import { SteamID } from "../../mod.ts";
 import { OpendotaRequester } from "./requester.ts";
 
 interface PlayerOverview {
@@ -28,7 +29,7 @@ interface PlayerOverview {
   };
 }
 
-export async function fetchPlayerOverview(steamid: string | number) {
+export async function fetchPlayerOverview(steamid: SteamID) {
   const id = normalizeSteamID(String(steamid));
   if (isErr(id)) return id;
   const res = await OpendotaRequester.json("api/players/" + id.id32);

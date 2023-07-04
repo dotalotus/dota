@@ -7,3 +7,4 @@ export * from "./language.ts";
 export * from "./lobbyType.ts";
 export * from "./npc.ts";
 export * from "./region.ts";
+export * from "./steamid.ts";

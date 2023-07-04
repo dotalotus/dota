@@ -1,42 +1,44 @@
 import { Heroes } from "../mod.ts";
+import { AbilityID } from "./ability.ts";
+import { GameVersionID } from "./gameVersion.ts";
 
 export interface Hero {
-  id: number;
-  name: string;
-  displayName: string;
-  shortName: string;
+  id: HeroID;
+  name: HeroName;
+  displayName: HeroDisplayName;
+  shortName: HeroShortName;
   abilities: HeroAbility[];
   roles: HeroRole[];
   talents: HeroTalent[];
   stat: HeroStats;
   language: HeroLanguage;
-  aliases: string[];
+  aliases: HeroAlias[];
 }
 
 interface HeroAbility {
   slot: number;
-  abilityId: number;
+  abilityId: AbilityID;
 }
 
 interface HeroRole {
-  roleId: number;
+  roleId: HeroRoleID;
   level: number;
 }
 
 interface HeroTalent {
   slot: number;
-  gameVersionId: number;
-  abilityId: number;
+  gameVersionId: GameVersionID;
+  abilityId: AbilityID;
 }
 
 interface HeroStats {
-  gameVersionId: number;
+  gameVersionId: GameVersionID;
   enabled: boolean;
   heroUnlockOrder: number;
   team: boolean;
   cmEnabled: boolean;
   newPlayerEnabled: boolean;
-  attackType: string;
+  attackType: HeroAttackType;
   startingArmor: number;
   startingMagicArmor: number;
   startingDamageMin: number;
@@ -45,7 +47,7 @@ interface HeroStats {
   attackAnimationPoint: number;
   attackAcquisitionRange: number;
   attackRange: number;
-  AttributePrimary: string;
+  AttributePrimary: HeroPrimaryAttribute;
   heroPrimaryAttribute: number;
   strengthBase: number;
   strengthGain: number;
