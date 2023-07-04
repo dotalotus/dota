@@ -3,7 +3,9 @@ import { LobbyType } from "../../mod.ts";
 import { StratzRequester } from "./requester.ts";
 
 export async function fetchLobbyTypeData() {
-  const response = await StratzRequester.json("api/v1/LobbyType");
+  const response = await StratzRequester.json<Record<string, LobbyType>>(
+    "api/v1/LobbyType",
+  );
   if (isErr(response)) return response;
-  return Object.values(response as unknown as Record<string, LobbyType>);
+  return Object.values(response);
 }

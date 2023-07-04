@@ -9,7 +9,7 @@ interface Options {
 
 export async function fetchAbilityData(options: Options = {}) {
   const response = await StratzRequester
-    .json("api/v1/Ability", {
+    .json<Record<string, Ability>>("api/v1/Ability", {
       searchParams: new URLSearchParams(
         Object.entries(options).map(([key, value]) => [key, String(value)]),
       ),
@@ -17,5 +17,5 @@ export async function fetchAbilityData(options: Options = {}) {
   if (isErr(response)) {
     return response;
   }
-  return Object.values(response as unknown as Record<string, Ability>);
+  return Object.values(response);
 }

@@ -8,11 +8,14 @@ interface Options {
 }
 
 export async function fetchItemData(options: Options = {}) {
-  const response = await StratzRequester.json("api/v1/Item", {
-    searchParams: new URLSearchParams(
-      Object.entries(options).map(([key, value]) => [key, String(value)]),
-    ),
-  });
+  const response = await StratzRequester.json<Record<string, Item>>(
+    "api/v1/Item",
+    {
+      searchParams: new URLSearchParams(
+        Object.entries(options).map(([key, value]) => [key, String(value)]),
+      ),
+    },
+  );
   if (isErr(response)) return response;
-  return Object.values(response as unknown as Record<string, Item>);
+  return Object.values(response);
 }

@@ -4,9 +4,9 @@ import { StratzRequester } from "./requester.ts";
 
 export async function fetchGameVersionData() {
   const response = await StratzRequester
-    .json("api/v1/GameVersion");
+    .json<GameVersion[]>("api/v1/GameVersion");
   if (isErr(response)) {
     return response;
   }
-  return Object.values(response as unknown as GameVersion[]);
+  return Object.values(response);
 }

@@ -10,11 +10,11 @@ interface Options {
 export async function fetchHeroData(
   options: Options = {},
 ) {
-  const res = await StratzRequester.json("api/v1/Hero", {
+  const res = await StratzRequester.json<Record<string, Hero>>("api/v1/Hero", {
     searchParams: new URLSearchParams(
       Object.entries(options).map(([key, value]) => [key, String(value)]),
     ),
   });
   if (isErr(res)) return res;
-  return Object.values(res as unknown as Record<string, Hero>);
+  return Object.values(res);
 }
