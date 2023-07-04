@@ -3,7 +3,7 @@ import { isErr, normalizeSteamID } from "../../deps.ts";
 import { SteamID } from "../../mod.ts";
 import { OpendotaRequester } from "./requester.ts";
 
-interface PlayerOverview {
+export interface PlayerOverview {
   solo_competitive_rank: number | null;
   competitive_rank: number | null;
   rank_tier: number | null;

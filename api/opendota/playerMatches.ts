@@ -10,7 +10,7 @@ import {
 } from "../../mod.ts";
 import { OpendotaRequester } from "./requester.ts";
 
-interface PlayerRecentMatch {
+export interface PlayerRecentMatch {
   match_id: number;
   player_slot: number;
   radiant_win: boolean;
