@@ -8,4 +8,7 @@ export * from "./lobbyType.ts";
 export * from "./npc.ts";
 export * from "./region.ts";
 export * from "./steamid.ts";
+export * from "./playerSlot.ts";
+export * from "./skill.ts";
+export * from "./leaverStatus.ts";
 export * from "./api/mod.ts";
