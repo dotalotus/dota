@@ -10,7 +10,7 @@ export const GameVersionByName = new Map<string, GameVersion>(
 );
 
 export function GetGameVersion(id: string | number) {
-  if (!isNaN(Number(id))) {
+  if (!isNaN(Number(id)) && Number.isInteger(Number(id))) {
     if (GameVersionByID.has(Number(id))) return GameVersionByID.get(Number(id));
     return null;
   }

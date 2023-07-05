@@ -1,6 +1,5 @@
 import { isErr, normalizeSteamID } from "../../deps.ts";
-import { SteamID } from "../../mod.ts";
-import { PlayerRecentMatch } from "./mod.ts";
+import { OpendotaPlayerRecentMatch, SteamID } from "../../mod.ts";
 import { OpendotaRequester } from "./requester.ts";
 
 export async function fetchPlayerRecentMatches(
@@ -10,7 +9,7 @@ export async function fetchPlayerRecentMatches(
   if (isErr(id)) {
     return id;
   }
-  return await OpendotaRequester.json<PlayerRecentMatch[]>(
+  return await OpendotaRequester.json<OpendotaPlayerRecentMatch[]>(
     "api/players/" + id.id32 + "/recentMatches",
   );
 }

@@ -1,10 +1,14 @@
-import { api } from "./mod.ts";
+import { isErr } from "./deps.ts";
+import { api, GetHero, HeroAlias, HeroByAlias } from "./mod.ts";
 
 if (!Deno.env.has("STRATZ_BEARER_TOKEN")) throw new Error("No api token");
-if (!Deno.env.has("OPENDOTA_API_KEY")) throw new Error("No api token");
 
 api.stratz.setBearerToken(Deno.env.get("STRATZ_BEARER_TOKEN")!);
-api.opendota.setApiKey(Deno.env.get("OPENDOTA_API_KEY")!);
 
-const result = await api.opendota.fetchPlayerOverview(291312264);
+// const result = await api.opendota.fetchPlayerMatches(76561198251577992n, {
+//   hero_id: GetHero("bara")?.id,
+// });
+
+const result = await api.opendota.fetchMatchDetails(7163956977);
+
 console.log(result);
