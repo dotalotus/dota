@@ -9,5 +9,7 @@ export async function fetchRealtimeStats(serverSteamId: string) {
       searchParams: new URLSearchParams({ server_steam_id: serverSteamId }),
     },
   );
-  return handlePossibleErrorRequest<DotaRealtimeStats>(res);
+  return handlePossibleErrorRequest<DotaRealtimeStats>(
+    res,
+  );
 }
