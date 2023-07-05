@@ -1,5 +1,5 @@
 import { isErr } from "../../deps.ts";
-import { SteamMatchHistoryBySequenceNum } from "../../mod.ts";
+import { DotaMatchHistoryBySequenceNum } from "../../mod.ts";
 import { handlePossibleErrorRequest } from "../errorHandling.ts";
 import { SteamRequester } from "../requesters/requester.ts";
 
@@ -18,7 +18,7 @@ export async function fetchMatchHistoryBySequenceNum(options: Options = {}) {
       searchParams,
     },
   );
-  const json = await handlePossibleErrorRequest<SteamMatchHistoryBySequenceNum>(
+  const json = await handlePossibleErrorRequest<DotaMatchHistoryBySequenceNum>(
     res,
   );
   if (isErr(json)) return json;

@@ -7,10 +7,10 @@ import {
 } from "../../mod.ts";
 
 export interface DotaRealtimeStats {
-  match: DotaRealtimeStatsMatch;
-  teams: DotaRealtimeStatsTeam[];
-  buildings: DotaRealtimeStatsBuilding[];
-  graph_data: {
+  match?: DotaRealtimeStatsMatch;
+  teams?: DotaRealtimeStatsTeam[];
+  buildings?: DotaRealtimeStatsBuilding[];
+  graph_data?: {
     graph_gold: number[];
   };
 }

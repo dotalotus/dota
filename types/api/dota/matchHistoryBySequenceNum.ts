@@ -7,15 +7,15 @@ import {
   PlayerSlot,
 } from "../../mod.ts";
 
-export interface SteamMatchHistoryBySequenceNum {
+export interface DotaMatchHistoryBySequenceNum {
   result: {
     status: number;
-    matches: SteamMatchHistoryBySequenceNumMatch[];
+    matches: DotaMatchHistoryBySequenceNumMatch[];
   };
 }
 
-export interface SteamMatchHistoryBySequenceNumMatch {
-  players: SteamMatchHistoryBySequenceNumPlayer[];
+export interface DotaMatchHistoryBySequenceNumMatch {
+  players: DotaMatchHistoryBySequenceNumPlayer[];
   radiant_win: boolean;
   duration: number;
   pre_game_duration: number;
@@ -40,7 +40,7 @@ export interface SteamMatchHistoryBySequenceNumMatch {
   dire_score: number;
 }
 
-export interface SteamMatchHistoryBySequenceNumPlayer {
+export interface DotaMatchHistoryBySequenceNumPlayer {
   account_id: number;
   player_slot: PlayerSlot;
   team_number: number;

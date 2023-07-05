@@ -1,10 +1,10 @@
 import { Err, isErr, normalizeSteamID } from "../../deps.ts";
 import {
+  DotaMatchHistory,
   GamemodeID,
   HeroID,
   Skill,
   SteamID,
-  SteamMatchHistory,
 } from "../../mod.ts";
 import { handlePossibleErrorRequest } from "../errorHandling.ts";
 import { SteamRequester } from "../requesters/requester.ts";
@@ -38,7 +38,7 @@ export async function fetchMatchHistory(options: Options = {}) {
       searchParams,
     },
   );
-  const json = await handlePossibleErrorRequest<SteamMatchHistory>(res);
+  const json = await handlePossibleErrorRequest<DotaMatchHistory>(res);
   if (isErr(json)) {
     return json;
   }
