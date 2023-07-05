@@ -66,10 +66,14 @@ interface DraftTimings {
   total_time_taken: number;
 }
 
+// deno-lint-ignore no-empty-interface
 interface Objectives {
+  // TODO(ybabts) figure out what the type is
 }
 
+// deno-lint-ignore no-empty-interface
 interface Teamfights {
+  // TODO(ybabts) figure out what the type is
 }
 
 interface Player {
@@ -239,7 +243,9 @@ interface Cosmetic {
   used_by_heroes: string | null;
 }
 
+// deno-lint-ignore no-empty-interface
 interface League {
+  // TODO(ybabts) figure out what this interface looks like
 }
 
 interface PicksBans {

@@ -6,7 +6,7 @@ import {
   SteamID,
   SteamMatchHistory,
 } from "../../mod.ts";
-import { SteamRequester } from "../steam/requester.ts";
+import { SteamRequester } from "../requesters/requester.ts";
 
 interface Options {
   hero_id?: HeroID;

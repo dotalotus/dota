@@ -1,6 +1,6 @@
 import { CaptureErr, Err, isErr } from "../../deps.ts";
 import { SteamMatchHistoryBySequenceNum } from "../../mod.ts";
-import { SteamRequester } from "../steam/requester.ts";
+import { SteamRequester } from "../requesters/requester.ts";
 
 interface Options {
   start_at_match_seq_num?: number;
