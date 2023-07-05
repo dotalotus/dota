@@ -1,6 +1,6 @@
 import { isErr } from "../../deps.ts";
 import { Gamemode } from "../../mod.ts";
-import { StratzRequester } from "./requester.ts";
+import { StratzRequester } from "../requesters/mod.ts";
 
 export async function fetchGamemodeData() {
   const response = await StratzRequester.json<Record<string, Gamemode>>(

@@ -1,7 +1,6 @@
-// deno-lint-ignore-file camelcase
 import { CaptureErr, Err, isErr } from "../../deps.ts";
 import { SteamMatchHistoryBySequenceNum } from "../../mod.ts";
-import { SteamRequester } from "./requester.ts";
+import { SteamRequester } from "../steam/requester.ts";
 
 interface Options {
   start_at_match_seq_num?: number;

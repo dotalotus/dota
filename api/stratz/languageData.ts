@@ -1,5 +1,5 @@
 import { isErr } from "../../deps.ts";
-import { StratzRequester } from "./requester.ts";
+import { StratzRequester } from "../requesters/mod.ts";
 
 export async function fetchLanguageData() {
   const response = await StratzRequester.json<Record<string, string>>(

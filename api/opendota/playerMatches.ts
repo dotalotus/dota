@@ -1,4 +1,3 @@
-// deno-lint-ignore-file camelcase
 import { isErr, normalizeSteamID } from "../../deps.ts";
 import {
   GamemodeID,
@@ -9,7 +8,7 @@ import {
   RegionID,
   SteamID,
 } from "../../mod.ts";
-import { OpendotaRequester } from "./requester.ts";
+import { OpendotaRequester } from "../requesters/mod.ts";
 
 interface Options {
   limit?: number;

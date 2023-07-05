@@ -1,4 +1,3 @@
-// deno-lint-ignore-file camelcase
 import { CaptureErr, Err, isErr, normalizeSteamID } from "../../deps.ts";
 import {
   GamemodeID,
@@ -7,7 +6,7 @@ import {
   SteamID,
   SteamMatchHistory,
 } from "../../mod.ts";
-import { SteamRequester } from "./requester.ts";
+import { SteamRequester } from "../steam/requester.ts";
 
 interface Options {
   hero_id?: HeroID;

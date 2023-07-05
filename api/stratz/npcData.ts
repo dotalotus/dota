@@ -1,6 +1,6 @@
 import { isErr } from "../../deps.ts";
 import { GameVersionID, NPC } from "../../mod.ts";
-import { StratzRequester } from "./requester.ts";
+import { StratzRequester } from "../requesters/mod.ts";
 
 interface Options {
   gameVersionId?: GameVersionID;

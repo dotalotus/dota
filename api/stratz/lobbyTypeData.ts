@@ -1,6 +1,6 @@
 import { isErr } from "../../deps.ts";
 import { LobbyType } from "../../mod.ts";
-import { StratzRequester } from "./requester.ts";
+import { StratzRequester } from "../requesters/mod.ts";
 
 export async function fetchLobbyTypeData() {
   const response = await StratzRequester.json<Record<string, LobbyType>>(

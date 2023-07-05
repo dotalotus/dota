@@ -11,4 +11,5 @@ export * from "./steamid.ts";
 export * from "./playerSlot.ts";
 export * from "./skill.ts";
 export * from "./leaverStatus.ts";
+export * from "./divisions.ts";
 export * from "./api/mod.ts";

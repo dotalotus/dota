@@ -1,4 +1,3 @@
-// deno-lint-ignore-file camelcase
 import { HeroID, LobbyTypeID, PlayerSlot } from "../../mod.ts";
 
 export enum SteamMatchHistoryStatus {

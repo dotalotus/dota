@@ -1,6 +1,6 @@
 import { isErr, normalizeSteamID } from "../../deps.ts";
 import { OpendotaPlayerWinLoss, SteamID } from "../../mod.ts";
-import { OpendotaRequester } from "./requester.ts";
+import { OpendotaRequester } from "../requesters/mod.ts";
 
 export async function fetchPlayerWinLoss(
   steamid: SteamID,

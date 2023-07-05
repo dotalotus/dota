@@ -1,4 +1,3 @@
-// deno-lint-ignore-file camelcase
 import { GameVersionID, HeroID, RegionID } from "../../mod.ts";
 export interface OpendotaMatchDetails {
   match_id: number;

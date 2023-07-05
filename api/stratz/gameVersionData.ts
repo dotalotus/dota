@@ -1,6 +1,6 @@
 import { isErr } from "../../deps.ts";
 import { GameVersion } from "../../mod.ts";
-import { StratzRequester } from "./requester.ts";
+import { StratzRequester } from "../requesters/mod.ts";
 
 export async function fetchGameVersionData() {
   const response = await StratzRequester

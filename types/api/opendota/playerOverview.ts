@@ -1,4 +1,3 @@
-// deno-lint-ignore-file camelcase
 export interface OpendotaPlayerOverview {
   solo_competitive_rank: number | null;
   competitive_rank: number | null;
