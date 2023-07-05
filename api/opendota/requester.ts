@@ -13,6 +13,6 @@ export function setOpendotaRequester(requester: Requester) {
 export function createOpendotaRequester() {
   return new Requester({
     hostname: endpoint,
-    searchParams: new URLSearchParams({ key: apiKey! }),
+    searchParams: new URLSearchParams({ api_key: apiKey! }),
   });
 }
