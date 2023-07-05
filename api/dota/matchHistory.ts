@@ -1,4 +1,4 @@
-import { CaptureErr, Err, isErr, normalizeSteamID } from "../../deps.ts";
+import { Err, isErr, normalizeSteamID } from "../../deps.ts";
 import {
   GamemodeID,
   HeroID,
