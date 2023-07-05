@@ -19,10 +19,14 @@ export async function handlePossibleErrorRequest<T>(
       "You have exceeded the rate limit for this endpoint",
     );
   }
+  const text = await CaptureErr("Text Error", async () => await res.text());
+  if (isErr(text)) return text;
   const json = await CaptureErr(
     "JSON Error",
-    async (): Promise<T> => await res.json(),
+    (): T => JSON.parse(text),
   );
-  if (isErr(json)) return json;
+  if (isErr(json)) {
+    return new Err(json.name, json.message + "\n" + text);
+  }
   return json;
 }
