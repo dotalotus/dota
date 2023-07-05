@@ -16,7 +16,6 @@
       ],
       "include": [
         "ban-untagged-todo",
-        "camelcase",
         "default-param-last",
         "eqeqeq",
         "no-await-in-loop",
