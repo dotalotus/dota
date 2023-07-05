@@ -6,6 +6,15 @@ import {
   LobbyTypeID,
 } from "../../mod.ts";
 
+export interface DotaRealtimeStats {
+  match: DotaRealtimeStatsMatch;
+  teams: DotaRealtimeStatsTeam[];
+  buildings: DotaRealtimeStatsBuilding[];
+  graph_data: {
+    graph_gold: number[];
+  };
+}
+
 export interface DotaRealtimeStatsMatch {
   /** The Steam ID of the server where the match was played. */
   server_steam_id: string;

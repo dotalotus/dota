@@ -1,5 +1,6 @@
-import { CaptureErr, Err, isErr } from "../../deps.ts";
+import { isErr } from "../../deps.ts";
 import { SteamMatchHistoryBySequenceNum } from "../../mod.ts";
+import { handlePossibleErrorRequest } from "../errorHandling.ts";
 import { SteamRequester } from "../requesters/requester.ts";
 
 interface Options {
@@ -17,33 +18,9 @@ export async function fetchMatchHistoryBySequenceNum(options: Options = {}) {
       searchParams,
     },
   );
-  if (isErr(res)) {
-    return res;
-  }
-  if (res.status === 403) {
-    return new Err(
-      "Invalid API Key",
-      "You are either using an invalid API key or you haven't set one",
-    );
-  }
-  if (res.status === 429) {
-    return new Err(
-      "Rate Limit Exceeded",
-      "You have exceeded the rate limit for this endpoint",
-    );
-  }
-  const json = await CaptureErr(
-    "JSON Error",
-    async (): Promise<SteamMatchHistoryBySequenceNum> => await res.json(),
+  const json = await handlePossibleErrorRequest<SteamMatchHistoryBySequenceNum>(
+    res,
   );
-  if (isErr(json)) {
-    return json;
-  }
-  if (json.result.status === 8) {
-    return new Err(
-      "Invalid Matches Requested",
-      "matches_requested must be greater than 0",
-    );
-  }
+  if (isErr(json)) return json;
   return json.result.matches;
 }

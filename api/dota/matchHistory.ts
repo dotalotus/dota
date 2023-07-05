@@ -6,6 +6,7 @@ import {
   SteamID,
   SteamMatchHistory,
 } from "../../mod.ts";
+import { handlePossibleErrorRequest } from "../errorHandling.ts";
 import { SteamRequester } from "../requesters/requester.ts";
 
 interface Options {
@@ -37,25 +38,7 @@ export async function fetchMatchHistory(options: Options = {}) {
       searchParams,
     },
   );
-  if (isErr(res)) {
-    return res;
-  }
-  if (res.status === 403) {
-    return new Err(
-      "Invalid API Key",
-      "You are either using an invalid API key or you haven't set one",
-    );
-  }
-  if (res.status === 429) {
-    return new Err(
-      "Rate Limit Exceeded",
-      "You have exceeded the rate limit for this endpoint",
-    );
-  }
-  const json = await CaptureErr(
-    "JSON Error",
-    async (): Promise<SteamMatchHistory> => await res.json(),
-  );
+  const json = await handlePossibleErrorRequest<SteamMatchHistory>(res);
   if (isErr(json)) {
     return json;
   }
