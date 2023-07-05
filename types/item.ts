@@ -1,7 +1,7 @@
 import { Items } from "../mod.ts";
 
 type raw = typeof Items[number];
-export type ItemID = raw["id"];
+export type ItemID = raw["id"] | 0;
 export type ItemName = raw["name"];
 export type ItemShortName = raw["shortName"];
 export type ItemDisplayName = raw["displayName"];
