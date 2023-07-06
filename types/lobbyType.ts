@@ -1,7 +1,7 @@
 import { LobbyTypes } from "../mod.ts";
 
 export interface LobbyType {
-  id: number;
+  id: LobbyTypeID;
   name: string;
   langKey: string;
 }
