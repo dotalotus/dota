@@ -14,8 +14,11 @@ export function setSteamRequester(requester: Requester) {
   SteamRequester = requester;
 }
 
-export function createSteamRequester() {
+export function createSteamRequester(
+  requesterInit: ConstructorParameters<typeof Requester>[0] = {},
+) {
   return new Requester({
+    ...requesterInit,
     hostname: steamEndpoint,
     searchParams: new URLSearchParams({ key: steamApiKey! }),
   });
@@ -27,8 +30,11 @@ export function setStratzRequester(requester: Requester) {
   StratzRequester = requester;
 }
 
-export function createStratzRequester() {
+export function createStratzRequester(
+  requesterInit: ConstructorParameters<typeof Requester>[0] = {},
+) {
   return new Requester({
+    ...requesterInit,
     hostname: stratzEndpoint,
     requestInit: {
       headers: {
@@ -48,8 +54,11 @@ export function setOpendotaRequester(requester: Requester) {
   OpendotaRequester = requester;
 }
 
-export function createOpendotaRequester() {
+export function createOpendotaRequester(
+  requesterInit: ConstructorParameters<typeof Requester>[0] = {},
+) {
   return new Requester({
+    ...requesterInit,
     hostname: opendotaApiEndpoint,
     searchParams: new URLSearchParams({ api_key: opendotaApiKey! }),
   });
@@ -63,8 +72,11 @@ export function setDotaRequester(requester: Requester) {
   DotaRequester = requester;
 }
 
-export function createDotaRequester() {
+export function createDotaRequester(
+  requesterInit: ConstructorParameters<typeof Requester>[0] = {},
+) {
   return new Requester({
+    ...requesterInit,
     hostname: dotaEndpoint,
   });
 }
